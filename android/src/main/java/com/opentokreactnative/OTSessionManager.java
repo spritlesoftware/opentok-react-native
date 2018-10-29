@@ -371,9 +371,11 @@ public class OTSessionManager extends ReactContextBaseJavaModule
     private WritableMap prepareConnectionMap(Connection connection) {
 
         WritableMap connectionInfo = Arguments.createMap();
-        connectionInfo.putString("connectionId", connection.getConnectionId());
-        connectionInfo.putString("creationTime", connection.getCreationTime().toString());
-        connectionInfo.putString("data", connection.getData());
+        if (connection != null) {
+            connectionInfo.putString("connectionId", connection.getConnectionId());
+            connectionInfo.putString("creationTime", connection.getCreationTime().toString());
+            connectionInfo.putString("data", connection.getData());
+        }
         return connectionInfo;
     }
 
