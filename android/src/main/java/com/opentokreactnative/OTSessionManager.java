@@ -328,7 +328,9 @@ public class OTSessionManager extends ReactContextBaseJavaModule
         Session mSession = sharedState.getSession();
         WritableMap sessionInfo = Arguments.createMap();
         int connectionStatus = getConnectionStatus();
-        sessionInfo.putString("sessionId", mSession.getSessionId());
+        if (mSession != null) {
+            sessionInfo.putString("sessionId", mSession.getSessionId());
+        }
         if (connectionStatus == 1) {
             sessionInfo.putMap("connection", prepareConnectionMap(mSession.getConnection()));
         }
