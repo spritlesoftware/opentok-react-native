@@ -509,7 +509,9 @@ public class OTSessionManager extends ReactContextBaseJavaModule
     public void onConnected(Session session) {
 
         setConnectionStatus(1);
-        connectCallback.invoke();
+        if (connectCallback != null) {
+            connectCallback.invoke();
+        }
         if (contains(jsEvents, sessionPreface + "onConnected") || contains(componentEvents, sessionPreface + "onConnected")) {
             sendEvent(this.getReactApplicationContext(), sessionPreface + "onConnected", null);
         }
