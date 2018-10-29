@@ -31,6 +31,10 @@ public class OTSubscriberLayout extends FrameLayout{
         ConcurrentHashMap<String, FrameLayout> mSubscriberViewContainers = sharedState.getSubscriberViewContainers();
         mSubscriberViewContainers.put(streamId, mSubscriberViewContainer);
         addView(mSubscriberViewContainers.get(streamId), 0);
+        FrameLayout mSubscriberViewParent = (FrameLayout) mSubscribers.get(streamId).getView().getParent();
+        if (mSubscriberViewParent != null) {
+            mSubscriberViewParent.removeView(mSubscribers.get(streamId).getView());
+        }
         mSubscriberViewContainers.get(streamId).addView(mSubscribers.get(streamId).getView());
         requestLayout();
 
