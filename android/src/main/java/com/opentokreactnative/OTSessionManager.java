@@ -189,7 +189,9 @@ public class OTSessionManager extends ReactContextBaseJavaModule
                mSubscriberViewContainer.removeAllViews();
            }
            mSubscriberViewContainers.remove(mStreamId);
-           mSubscriber.destroy();
+           if (mSubscriber != null) {
+               mSubscriber.destroy();
+           }
            mSubscribers.remove(mStreamId);
            mSubscriberStreams.remove(mStreamId);
            mCallback.invoke();
