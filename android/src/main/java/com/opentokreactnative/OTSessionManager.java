@@ -332,9 +332,9 @@ public class OTSessionManager extends ReactContextBaseJavaModule
         int connectionStatus = getConnectionStatus();
         if (mSession != null) {
             sessionInfo.putString("sessionId", mSession.getSessionId());
-        }
-        if (connectionStatus == 1) {
-            sessionInfo.putMap("connection", prepareConnectionMap(mSession.getConnection()));
+            if (connectionStatus == 1) {
+                sessionInfo.putMap("connection", prepareConnectionMap(mSession.getConnection()));
+            }
         }
         sessionInfo.putInt("connectionStatus", connectionStatus);
         callback.invoke(sessionInfo);
